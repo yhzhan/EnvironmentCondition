@@ -6,6 +6,8 @@ import org.opencv.core.*;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.text.DecimalFormat;
@@ -14,6 +16,15 @@ import utils.*;
 import Script.*;
 
 public class Classifier {
+    public Classifier(){
+        try {
+
+            PrintStream print=new PrintStream("C:\\Users\\36546\\Documents\\Master\\4Semester\\Project\\results.txt");
+            System.setOut(print);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
@@ -24,6 +35,7 @@ public class Classifier {
         System.out.println("Please enter the image path: ");
         String ImagePath1 = pathfromUser.nextLine();
 
+        Classifier o = new Classifier();
         File file = new File(ImagePath1);
         Mat srcImage = null;
         eConditions eCondition;
@@ -34,7 +46,7 @@ public class Classifier {
             System.out.println("the environment Condition of "+file.getName()+" is:");
             System.out.println("Lighting Condition: "+eCondition.getLight());
             System.out.println("Degree of Blur: "+eCondition.getBlur());
-            System.out.println("The bild is blind: "+eCondition.isBlind());
+            System.out.println("The image is blind: "+eCondition.isBlind());
         }
         else if(file.isDirectory()){
             File[] fs = file.listFiles();
@@ -59,7 +71,7 @@ public class Classifier {
                 System.out.println("the environment Condition of "+f.getName()+" is:");
                 System.out.println("Lighting Condition: "+Lighting_condition[counter]);
                 System.out.println("Degree of Blur: "+Blured_Degree[counter]);
-                System.out.println("The bild is blind: "+Blind_Detection[counter]);
+                System.out.println("The image is blind: "+Blind_Detection[counter]);
                 counter++;
             }
             double lightDark=0,lightTwi=0,lightL=0;

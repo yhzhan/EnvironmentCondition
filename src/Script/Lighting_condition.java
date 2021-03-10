@@ -37,7 +37,7 @@ public class Lighting_condition {
                     this.LightCondition="Dark";
                 }
                 else {
-                    if (H < 75 && H > 50 && S < 80 && S > 115 && V > 95|| H < 50 && H > 40 && S > 40 && S < 80 && V > 110 ){
+                    if (H < 75 && H > 60 && S > 60 && S < 115 && V > 95 && V < 152|| H < 60 && H > 40 && S > 65 && S < 95 && V > 95 && V < 140){
                         this.LightCondition="Twilight";
                     }else this.LightCondition="Light";
                 }
